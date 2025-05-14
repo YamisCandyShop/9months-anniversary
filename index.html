@@ -73,4 +73,44 @@
       font-size: 1.2em;
       background-color: #fff;
       color: #ff4d6d;
-      borde
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy 9 Months, My Love! ❤️</h1>
+  <p>Every moment with you is my favorite. Thank you for being the best part of my life.</p>
+
+  <img src="your-photo.jpg" alt="Us">
+
+  <p>I love you endlessly 💕</p>
+
+  <!-- Music -->
+  <audio id="bg-music" loop>
+    <source src="your-music.mp3" type="audio/mpeg" />
+    Your browser does not support audio.
+  </audio>
+
+  <button onclick="document.getElementById('bg-music').play()">
+    🎵 Tap to Play Our Song
+  </button>
+
+  <!-- Falling hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+</body>
+</html>
