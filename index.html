@@ -67,42 +67,10 @@
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
     }
 
-    <audio id="bg-music" loop>
-  <source src="your-music.mp3" type="audio/mpeg" />
-</audio>
-
-<button onclick="document.getElementById('bg-music').play()" style="
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1.2em;
-  background-color: #fff;
-  color: #ff4d6d;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-">
-  🎵 Tap to Play Music
-</button>
-
-
-  <h1>Happy 9 Months, My Love! ❤️</h1>
-  <p>You make my life brighter every single day. Thank you for being mine.</p>
-  <img src="your-photo.jpg" alt="Us">
-  <p>Here's to forever with you 💕</p>
-
-  <!-- Falling hearts -->
-  <script>
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }
-    setInterval(createHeart, 300);
-  </script>
-</body>
-</html>
-
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background-color: #fff;
+      color: #ff4d6d;
+      borde
