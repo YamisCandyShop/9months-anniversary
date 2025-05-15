@@ -60,23 +60,52 @@
       }
     }
 
-    img {
-      max-width: 80%;
-      border-radius: 15px;
-      margin: 30px 0;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-
     button {
-      margin-top: 20px;
+      margin: 10px;
       padding: 10px 20px;
-      font-size: 1.2em;
+      font-size: 1.1em;
+      border-radius: 10px;
+      border: none;
       background-color: #fff;
       color: #ff4d6d;
-      border: none;
-      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    /* Slideshow styling */
+    #slideshow-container {
+      position: relative;
+      margin: 30px auto;
+    }
+
+    #slideshow {
+      max-width: 80%;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    #sparkle-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: radial-gradient(white, transparent);
+      border-radius: 50%;
+      animation: sparkleFade 1s ease-out forwards;
+    }
+
+    @keyframes sparkleFade {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(2); }
     }
   </style>
 </head>
@@ -85,7 +114,14 @@
   <h1>Happy 9 Months, My Love! ❤️</h1>
   <p>Every moment with you is my favorite. Thank you for being the best part of my life.</p>
 
-  <img src="your-photo.jpg" alt="Us">
+  <!-- Slideshow -->
+  <div id="slideshow-container">
+    <img id="slideshow" src="photo1.jpg" alt="Memory" />
+    <div>
+      <button onclick="prevImage()">⬅️</button>
+      <button onclick="nextImage()">➡️</button>
+    </div>
+  </div>
 
   <p>I love you endlessly 💕</p>
 
@@ -110,6 +146,47 @@
       setTimeout(() => heart.remove(), 10000);
     }
     setInterval(createHeart, 300);
+  </script>
+
+  <!-- Slideshow + Sparkle -->
+  <div id="sparkle-container"></div>
+  <script>
+    const images = [
+      "photo1.jpg", "photo2.jpg", "photo3.jpg",
+      "photo4.jpg", "photo5.jpg", "photo6.jpg",
+      "photo7.jpg", "photo8.jpg", "photo9.jpg",
+      "photo10.jpg", "photo11.jpg"
+    ];
+    let currentIndex = 0;
+
+    const slideshow = document.getElementById("slideshow");
+    const sparkleContainer = document.getElementById("sparkle-container");
+
+    function showImage(index) {
+      slideshow.src = images[index];
+      showSparkle();
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    }
+
+    function showSparkle() {
+      for (let i = 0; i < 10; i++) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.top = Math.random() * 100 + "vh";
+        sparkleContainer.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+    }
   </script>
 
 </body>
