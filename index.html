@@ -66,4 +66,157 @@
       margin: 30px auto;
     }
 
-    #slidesho
+    #slideshow {
+      max-width: 80%;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    #sparkle-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, #ffe066, rgba(255, 240, 150, 0));
+      border-radius: 50%;
+      box-shadow: 0 0 10px 4px rgba(255, 223, 70, 0.8);
+      animation: sparkleFade 1.4s ease-out forwards, sparkleMove 1.4s ease-out;
+      opacity: 1;
+    }
+
+    @keyframes sparkleFade {
+      0% { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(2); }
+    }
+
+    @keyframes sparkleMove {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(-30px); }
+    }
+
+    /* Buttons */
+    .nav-button {
+      background: #fff;
+      color: #ff4d6d;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.3em;
+      border-radius: 15px;
+      margin: 10px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-button:hover {
+      background: #ffe5ec;
+      transform: scale(1.05);
+    }
+
+    /* Music button */
+    .music-button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      font-size: 1.1em;
+      border-radius: 10px;
+      border: none;
+      background-color: #fff;
+      color: #ff4d6d;
+      cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Happy 9 Months, My Love! ❤️</h1>
+  <p>Every moment with you is my favorite. Thank you for being the best part of my life.</p>
+
+  <!-- Slideshow -->
+  <div id="slideshow-container">
+    <img id="slideshow" src="photo1.jpg" alt="Memory" />
+    <div>
+      <button class="nav-button" onclick="prevImage()">⬅️ Prev</button>
+      <button class="nav-button" onclick="nextImage()">Next ➡️</button>
+    </div>
+  </div>
+
+  <p>I love you endlessly 💕</p>
+
+  <!-- Music -->
+  <audio id="bg-music" loop>
+    <source src="your-music.mp3" type="audio/mpeg" />
+    Your browser does not support audio.
+  </audio>
+
+  <button class="music-button" onclick="document.getElementById('bg-music').play()">
+    🎵 Tap to Play Our Song
+  </button>
+
+  <!-- Falling hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+  <!-- Slideshow + Sparkle -->
+  <div id="sparkle-container"></div>
+  <script>
+    const images = [
+      "photo1.jpg", "photo2.jpg", "photo3.jpg",
+      "photo4.jpg", "photo5.jpg", "photo6.jpg",
+      "photo7.jpg", "photo8.jpg", "photo9.jpg",
+      "photo10.jpg", "photo11.jpg"
+    ];
+    let currentIndex = 0;
+
+    const slideshow = document.getElementById("slideshow");
+    const sparkleContainer = document.getElementById("sparkle-container");
+
+    function showImage(index) {
+      slideshow.src = images[index];
+      showSparkle();
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+    }
+
+    function showSparkle() {
+      for (let i = 0; i < 25; i++) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.style.left = Math.random() * 100 + "vw";
+        sparkle.style.top = Math.random() * 100 + "vh";
+        sparkleContainer.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1400);
+      }
+    }
+  </script>
+
+</body>
+</html>
